@@ -1,0 +1,15 @@
+# Expo / React Native + EAS recomendado
+
+# node_modules y otros archivos generados
+node_modules
+.expo
+.expo-shared
+npm-debug.log
+yarn-error.log
+dist
+web-build
+package-lock.json
+
+# Archivos y carpetas nativas (si estás usando Prebuild o solo Expo Go)
+ios
+android
