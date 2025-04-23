@@ -6,6 +6,7 @@ yarn-error.*
 
 # ─── EXPO ─────────────────────────────────────
 .expo/
+.expo-shared/
 dist/
 web-build/
 expo-env.d.ts
@@ -15,7 +16,9 @@ expo-env.d.ts
 *.tsbuildinfo
 
 # ─── NATIVO (EAS, ANDROID / IOS) ─────────────
-android/
+# ⚠️ Permitimos android/ porque es necesario para EAS Build
+android/.gradle/
+android/app/debug.keystore
 ios/
 *.jks
 *.p8
@@ -33,8 +36,3 @@ ios/
 .env*.local
 .env.*.local
 firebase-debug.log
-node_modules/
-.expo/
-.expo-shared/
-android/.gradle/
-android/app/debug.keystore
