@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "801397332820",
     "project_id": "gstreamso",
-    "storage_bucket": "gstreamso.appspot.com"
+    "storage_bucket": "gstreamso.firebasestorage.app"
   },
   "client": [
     {
