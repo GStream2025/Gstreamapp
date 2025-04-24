@@ -8,11 +8,12 @@ import {
   ScrollView,
   Dimensions,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
-import LottieView from '../components/LottieWrapper'; // 👈 wrapper compatible web/mobile
+import LottieView from '../components/LottieWrapper'; // ✅ Asegurate de que exista
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +27,8 @@ const options = [
 
 const DashboardScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      {/* Fondo animado */}
       <LottieView
         source={
           Platform.OS === 'web'
@@ -38,28 +40,33 @@ const DashboardScreen = ({ navigation }) => {
         style={styles.lottieBackground}
       />
 
+      {/* Capa degradada */}
       <LinearGradient
         colors={['rgba(15,12,41,0.85)', 'rgba(48,43,99,0.85)', 'rgba(36,36,62,0.85)']}
         style={styles.gradientOverlay}
       />
 
+      {/* Título */}
       <Text style={styles.title}>GStream Dashboard</Text>
 
+      {/* Opciones */}
       <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        {options.map((item, index) => (
-          <Animated.View
-            key={index}
-            entering={FadeInUp.delay(index * 100)}
-            style={styles.card}
-          >
-            <TouchableOpacity style={styles.option} onPress={() => navigation.navigate(item.route)}>
-              <Ionicons name={item.icon} size={30} color="#1db954" />
-              <Text style={styles.label}>{item.label}</Text>
-            </TouchableOpacity>
-          </Animated.View>
-        ))}
+        <View style={{ alignItems: 'center' }}>
+          {options.map((item, index) => (
+            <Animated.View
+              key={index}
+              entering={FadeInUp.delay(index * 100)}
+              style={styles.card}
+            >
+              <TouchableOpacity style={styles.option} onPress={() => navigation.navigate(item.route)}>
+                <Ionicons name={item.icon} size={30} color="#1db954" />
+                <Text style={styles.label}>{item.label}</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          ))}
+        </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -94,7 +101,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 8,
   },
   scrollContainer: {
-    alignItems: 'center',
     paddingBottom: 40,
     zIndex: 1,
   },
